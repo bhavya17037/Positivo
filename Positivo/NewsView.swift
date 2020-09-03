@@ -20,21 +20,31 @@ struct NewsView: View {
     }
     
     var body: some View {
-        VStack {
-            RemoteImageView(
-                url: URL(string: self.imageURL)!,
-                placeholderImage: Image.init("placeholder_avatar"),
-                transition: .custom(transition: .opacity, animation: .easeOut(duration: 0.5))
-            ).imageProcessing({ image in
-                return image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(height: 200)
-            })
+        
+        ZStack {
             
-            Text(article.title!)
-                .font(.headline)
-        }
+            Color(red: 163.00/256, green: 210.00/256, blue: 202.00/256)
+            .edgesIgnoringSafeArea(.all)
+        
+        
+            VStack {
+                RemoteImageView(
+                    url: URL(string: self.imageURL)!,
+                    placeholderImage: Image.init("placeholder_avatar"),
+                    transition: .custom(transition: .opacity, animation: .easeOut(duration: 0.5))
+                ).imageProcessing({ image in
+                    return image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: UIScreen.main.bounds.width - 30, height: 200)
+                        .padding(.init(top: 30, leading: 0, bottom: 10, trailing: 0))
+                })
+                
+                Text(article.title!)
+                    .font(.headline)
+                    .padding(10)
+            }
+        }.cornerRadius(25)
     }
 }
 

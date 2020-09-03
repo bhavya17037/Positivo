@@ -20,41 +20,49 @@ struct NewsDetail: View {
     }
     
     var body: some View {
-        VStack (spacing: 10) {
-            RemoteImageView(
-                url: URL(string: self.imageURL)!,
-                placeholderImage: Image.init("placeholder_avatar"),
-                transition: .custom(transition: .opacity, animation: .easeOut(duration: 0.5))
-            ).imageProcessing({ image in
-                return image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(height: 200)
-            })
+        Form{
+        ZStack{
             
-            VStack{
-                Text(article.title!)
-                    .font(.title)
-                    .padding(.top, 50)
-                
-                Text(article.content!)
-                    .font(.headline)
-                    .padding()
-            }
+            Color(red: 163.00/256, green: 210.00/256, blue: 202.00/256)
+            .edgesIgnoringSafeArea(.all)
             
-            Button(action: {
+            VStack (spacing: 10) {
+                RemoteImageView(
+                    url: URL(string: self.imageURL)!,
+                    placeholderImage: Image.init("placeholder_avatar"),
+                    transition: .custom(transition: .opacity, animation: .easeOut(duration: 0.5))
+                ).imageProcessing({ image in
+                    return image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: 200)
+                })
                 
-                let url: NSURL = URL(string: self.article.url!)! as NSURL
-                UIApplication.shared.open(url as URL)
+                VStack{
+                    Text(article.title!)
+                        .font(.title)
+                        .padding(.top, 50)
+                    
+                    Text(article.content!)
+                        .font(.headline)
+                        .padding()
+                }
+                
+                Button(action: {
+                    
+                    let url: NSURL = URL(string: self.article.url!)! as NSURL
+                    UIApplication.shared.open(url as URL)
 
-            }) {
-                Text(verbatim: "Click here for full story")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.blue)
+                }) {
+                    Text(verbatim: "Click here for full story")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .foregroundColor(.blue)
+                }
+                
+                Spacer()
             }
-            
-            Spacer()
+        }
         }
     }
 }

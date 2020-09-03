@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		315A70FA250115AE00BD5432 /* SwURL in Frameworks */ = {isa = PBXBuildFile; productRef = 315A70F9250115AE00BD5432 /* SwURL */; };
+		315A70FC25012A1700BD5432 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315A70FB25012A1700BD5432 /* NavigationBarModifier.swift */; };
 		31D4F19C2500D64F004E4EFB /* imagetest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4F19B2500D64F004E4EFB /* imagetest.swift */; };
 		31D4F19F2500D89A004E4EFB /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 31D4F19E2500D89A004E4EFB /* URLImage */; };
 		31E4FE3A24FFF3C600D9A20D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4FE3924FFF3C600D9A20D /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		315A70FB25012A1700BD5432 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
 		31D4F19B2500D64F004E4EFB /* imagetest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imagetest.swift; sourceTree = "<group>"; };
 		31E4FE3624FFF3C600D9A20D /* Positivo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Positivo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E4FE3924FFF3C600D9A20D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				31E4FE3924FFF3C600D9A20D /* AppDelegate.swift */,
 				31E4FE3B24FFF3C600D9A20D /* SceneDelegate.swift */,
 				31E4FE3D24FFF3C600D9A20D /* ContentView.swift */,
+				315A70FB25012A1700BD5432 /* NavigationBarModifier.swift */,
 				31D4F19B2500D64F004E4EFB /* imagetest.swift */,
 				31E4FE532500170C00D9A20D /* NewsDetail.swift */,
 				31E4FE512500114900D9A20D /* NewsView.swift */,
@@ -243,6 +246,7 @@
 			files = (
 				31E4FE4E24FFF46300D9A20D /* Article.swift in Sources */,
 				31E4FE3A24FFF3C600D9A20D /* AppDelegate.swift in Sources */,
+				315A70FC25012A1700BD5432 /* NavigationBarModifier.swift in Sources */,
 				31E4FE5024FFF57A00D9A20D /* ImageLoader.swift in Sources */,
 				31E4FE522500114900D9A20D /* NewsView.swift in Sources */,
 				31E4FE3C24FFF3C600D9A20D /* SceneDelegate.swift in Sources */,

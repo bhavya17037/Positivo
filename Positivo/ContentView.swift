@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import NaturalLanguage
 
 struct ContentView: View {
     
@@ -18,22 +19,24 @@ struct ContentView: View {
     @State var news = [Article]()
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(news, id: \.title) { article in
-                    NavigationLink(destination: NewsDetail(withURL: article.urlToImage!, article: article)) {
-                        NewsView(withURL: article.urlToImage!, article: article)
+        
+            NavigationView {
+                List {
+                    ForEach(news, id: \.title) { article in
+                        NavigationLink(destination: NewsDetail(withURL: article.urlToImage!, article: article)) {
+                            NewsView(withURL: article.urlToImage!, article: article)
+                        }
                     }
-                }
-            }.navigationBarTitle(Text("News"))
-        }.onAppear(perform: loadNews)
+                }.navigationBarTitle(Text("News").foregroundColor(.black))
+            }.onAppear(perform: loadNews)
+        
     }
 }
 
 extension ContentView {
     
     func loadNews() {
-        let urlString: String = "http://newsapi.org/v2/everything?q=coronavirus&from=2020-08-12&sortBy=publishedAt&apiKey=608703a6350649a7a283a98bd36fc561"
+        let urlString: String = "https://newsapi.org/v2/top-headlines?country=in&pageSize=100&apiKey=608703a6350649a7a283a98bd36fc561"
         
         guard let url = URL(string: urlString) else { return }
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -44,8 +47,10 @@ extension ContentView {
                     DispatchQueue.main.async {
                         let arts = response_obj.articles
                         for x in arts {
-                            if x.urlToImage != nil {
-                                self.news.append(x)
+                            if x.urlToImage != nil && x.content != nil && x.title != nil && x.articleDescription != nil {
+                                if self.checkSentimentScore(text: x.articleDescription!){
+                                    self.news.append(x)
+                                }
                             }else {
                                 print("NIL FOUND")
                             }
@@ -57,6 +62,22 @@ extension ContentView {
             
         }
         task.resume()
+    }
+    
+    func checkSentimentScore(text: String) -> Bool {
+        let tagger = NLTagger(tagSchemes: [.sentimentScore])
+        tagger.string = text
+        let (sentiment, _) = tagger.tag(at: text.startIndex, unit: .paragraph, scheme: .sentimentScore)
+        let score = Double(sentiment?.rawValue ?? "0") ?? 0
+        
+        print(text)
+        print(score)
+        
+        if(score > -0.5) {
+            return true
+        }
+        
+        return false
     }
 }
 
